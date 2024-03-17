@@ -1,26 +1,25 @@
-document.addEventListener('DOMContentLoaded', () => {start()})
+document.addEventListener('DOMContentLoaded', () => {
+    start()
+}
+)
 
 function start() {
     const canvas = document.getElementsByTagName('canvas') [0]
-    const context = canvas.getContext('2d')
-
-    //let y1, y2, y3
-   // const y1Generator = UAMGenerator(
-    const a1 = createA('black')
-    const a2 = createA('black')
-    const a3 = createA('black')
-
+    createA('black')
+    createA('black')
+    createA('black')
 
 }
 
 function createA(color: string = 'blue'): HTMLCanvasElement {
+    console.log("creating A")
     const canvas = document.createElement('canvas')
     canvas.width = 60
     canvas.height = 100
     const ctx = canvas.getContext('2d')
 
     drawA(ctx, 0, 0, color)
-
+    console.log(canvas)
     return canvas
 }
 
@@ -42,4 +41,5 @@ function drawA(ctx: CanvasRenderingContext2D, x: number, y: number, color: strin
     ctx.fill(a)
 
     ctx.fillRect(x + 15, y + 70, 30, 10)
+    console.log("draw A")
 }
