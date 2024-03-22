@@ -7,8 +7,6 @@ function start() {
     const canvas = document.getElementsByTagName('canvas')[0]
     const ctx = canvas.getContext('2d')
 
-    const img = document.getElementById('bt');
-
     let y1, y2, y3
     const y1Generator = UAMGenerator(400, -4, 0.1)
     const y2Generator = freezeUAMGenerator(UAMGenerator(400, -4, 0.1), 8)
@@ -18,14 +16,20 @@ function start() {
     const a2 = createA('blue')
     const a3 = createA('red')
 
-    requestAnimationFrame(animate) /*Как работает анимация?*/
+    requestAnimationFrame(animate)
+
+    const img = document.createElement("img")
+    img.src = "/source/batoot.jpg"
+    img.alt = "where img?"
+    document.body.appendChild(img)
+    ctx.drawImage(img, 100, 600)
 
     const context = {
         clearRect: () => {}
     }
 
     function animate() {
-        ctx.clearRect(0, 0, 1200, 800)
+        ctx.clearRect(0, 0, 1000, 500)
 
         y1 = y1Generator.next().value
         y2 = y2Generator.next().value
@@ -68,9 +72,8 @@ function* UAMGenerator(x0: number, vx0: number, ax: number): Generator<number> {
     }
 }
 
-function createA(color: string = 'blue'): HTMLCanvasElement {
+function createA(color: string): HTMLCanvasElement {
     const canvas = document.createElement('canvas')
-    //document.body.appendChild(canvas)
     canvas.width = 60
     canvas.height = 100
     const ctx = canvas.getContext('2d')
@@ -79,8 +82,6 @@ function createA(color: string = 'blue'): HTMLCanvasElement {
     console.log(canvas)
     return canvas
 }
-
-
 
 function drawA(ctx: CanvasRenderingContext2D, x: number, y: number, color: string ): void {
     const a = new Path2D()
@@ -96,9 +97,12 @@ function drawA(ctx: CanvasRenderingContext2D, x: number, y: number, color: strin
     a.lineTo(x + 30, y + 14)
     a.lineTo(x + 25, y + 34)
     a.lineTo(x + 10, y + 100)
-    ctx.fillRect(x + 15, y + 70, 30, 10)
 
+    ctx.fillStyle = color
     ctx.fill(a)
+
+    ctx.fillStyle = color
+    ctx.fillRect(x + 15, y + 70, 30, 10)
 
 }
 
