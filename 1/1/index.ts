@@ -1,3 +1,6 @@
+import {createA} from "./letterA";
+import {createTrampoline} from "./trampoline";
+
 document.addEventListener('DOMContentLoaded', () => {
     start()
 }
@@ -12,24 +15,19 @@ function start() {
     const y2Generator = freezeUAMGenerator(UAMGenerator(400, -4, 0.1), 8)
     const y3Generator = freezeUAMGenerator(UAMGenerator(400, -4, 0.1), 16)
 
-    const a1 = createA('black')
-    const a2 = createA('blue')
-    const a3 = createA('red')
+    const a1 = createA('#404040')
+    const a2 = createA('#606060')
+    const a3 = createA('#909090')
 
     requestAnimationFrame(animate)
-
-    const img = document.createElement("img")
-    img.src = "/source/batoot.jpg"
-    img.alt = "where img?"
-    document.body.appendChild(img)
-    ctx.drawImage(img, 100, 600)
 
     const context = {
         clearRect: () => {}
     }
 
     function animate() {
-        ctx.clearRect(0, 0, 1000, 500)
+        ctx.clearRect(0, 0, 1000, 800)
+        createTrampoline(ctx, 25, 450)
 
         y1 = y1Generator.next().value
         y2 = y2Generator.next().value
@@ -50,7 +48,7 @@ function* freezeUAMGenerator(generator: Generator<number>, n: number): Generator
         yield frozenValue
     }
 
-    while (true) { // каво? ретурн в цикле?
+    while (true) {
         yield generator.next().value
     }
 }
@@ -71,39 +69,3 @@ function* UAMGenerator(x0: number, vx0: number, ax: number): Generator<number> {
         yield x
     }
 }
-
-function createA(color: string): HTMLCanvasElement {
-    const canvas = document.createElement('canvas')
-    canvas.width = 60
-    canvas.height = 100
-    const ctx = canvas.getContext('2d')
-
-    drawA(ctx, 0, 0, color)
-    console.log(canvas)
-    return canvas
-}
-
-function drawA(ctx: CanvasRenderingContext2D, x: number, y: number, color: string ): void {
-    const a = new Path2D()
-
-    a.moveTo(x, y + 100)
-    a.lineTo(x + 25, y)
-    a.lineTo(x + 35, y)
-    a.lineTo(x + 60, y + 100)
-
-    a.lineTo(x + 50, y + 100)
-    a.lineTo(x + 35, y + 34)
-
-    a.lineTo(x + 30, y + 14)
-    a.lineTo(x + 25, y + 34)
-    a.lineTo(x + 10, y + 100)
-
-    ctx.fillStyle = color
-    ctx.fill(a)
-
-    ctx.fillStyle = color
-    ctx.fillRect(x + 15, y + 70, 30, 10)
-
-}
-
-
