@@ -1,8 +1,10 @@
+import {dragAndDropable} from "../../source/dragAndDrop";
 
 export class House {
      public draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D = canvas.getContext('2d')) {
          canvas.width = 440
          canvas.height = 280
+         dragAndDropable(canvas)
 
          this.drawWalls(ctx)
          this.drawPipe(ctx)

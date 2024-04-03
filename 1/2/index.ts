@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.scale(1.5, 3)
             house.draw(canvas)
 }
-
 )
 
 //TODO: дрыгындроп
