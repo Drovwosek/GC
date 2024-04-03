@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 )
 
-function start() {
+function start()  {
+    var start: number = null;
+
     const canvas = document.getElementsByTagName('canvas')[0]
     const ctx = canvas.getContext('2d')
 
@@ -21,11 +23,9 @@ function start() {
 
     requestAnimationFrame(animate)
 
-    const context = {
-        clearRect: () => {}
-    }
+    function animate(currentTime: number) {
+        if (!start) start = currentTime // что я тут получил? зачем мне это?
 
-    function animate() {
         ctx.clearRect(0, 0, 1000, 800)
         createTrampoline(ctx, 25, 450)
 
@@ -56,7 +56,7 @@ function* freezeUAMGenerator(generator: Generator<number>, n: number): Generator
 function* UAMGenerator(x0: number, vx0: number, ax: number): Generator<number> {
     let x = x0
     let vx = vx0
-
+    //TODO : учитывать время проведения отрисовки следующего кадра
     while (true) {
         x += vx
         vx += ax

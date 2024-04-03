@@ -8,6 +8,7 @@ export function createA(color: string): HTMLCanvasElement {
     console.log(canvas)
     return canvas
 }
+
  function drawA(ctx: CanvasRenderingContext2D, x: number, y: number, color: string ): void {
     const a = new Path2D()
 
