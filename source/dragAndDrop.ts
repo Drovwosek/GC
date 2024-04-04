@@ -18,15 +18,17 @@ export function dragAndDropable(element: HTMLElement){
 
             element.style.left = newLeft + 'px'
             element.style.top = newTop + 'px'
-
         }
 
         element.parentElement.addEventListener('mousemove', onMove)
         window.addEventListener('mouseup', () => {
             element.parentElement.removeEventListener('mousemove', onMove)
         }, {once: true})
+        document.addEventListener('visibilitychange', () => {
+            element.parentElement.removeEventListener('mousemove', onMove)
+        })
     })
-    //TODO: window.removeEventListener('mouseout', )
+   
 }
 
 function clamp(x: number, min: number, max: number){

@@ -6,13 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d')
         dragAndDropable(canvas)
 
-        let house1 = new House(0, 0)
-        house1.draw(canvas)
+        let house2 = new House(200, 50)
+        ctx.scale(1.5, 1.5)//TODO: применение восстановления холста
 
-        let house2 = new House(150, 50)
-        ctx.scale(1.5, 1.5)
-        house2.draw(canvas)
-}
+
+            house2.draw(canvas)
+            ctx.resetTransform()
+
+
+            let house1 = new House(0, 0)
+            house1.draw(canvas)
+
+    }
 )
 
 //TODO: переведи на канвасное масштабирование.

@@ -14,11 +14,14 @@ function initDialog(button: HTMLElement, dialog: HTMLElement) {
     button.addEventListener('click', () => dialog.classList.toggle('hide'))
     dialog.addEventListener('focusout', () => dialog.classList.toggle('hide'))
 }
+//TODO: застевание второй картинки
+//TODO: удаление
+//TODO: ДНД при переключении удаляет картинку
 
 function loadImg() {
     const input = document.createElement('input')
     input.type = 'file'
-    input.accept = '.png, .jpg, .jpeg'
+    input.accept = '.png, .jpg, .jpeg, .bmp'
     input.click()
     input.addEventListener('change', () => {
         const file = input.files[0]

@@ -8,8 +8,6 @@ export class House {
     }
 
      public draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D = canvas.getContext('2d')) {
-
-
          this.drawWalls(ctx)
          this.drawPipe(ctx)
          this.drawRoof(ctx)
