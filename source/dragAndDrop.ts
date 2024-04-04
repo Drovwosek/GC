@@ -5,6 +5,7 @@ export function dragAndDropable(element: HTMLElement){
 
     element.addEventListener('mousedown', downEvent => {
         downEvent.preventDefault()
+
         const startX = downEvent.x - parseInt(element.style.left)
         const startY = downEvent.y - parseInt(element.style.top)
         const onMove = (event: MouseEvent) => {
@@ -29,6 +30,5 @@ export function dragAndDropable(element: HTMLElement){
 }
 
 function clamp(x: number, min: number, max: number){
-
     return Math.max(min, Math.max(x, max))
 }
