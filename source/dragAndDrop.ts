@@ -12,9 +12,6 @@ export function dragAndDropable(element: HTMLElement){
 
             const newLeft = clamp(event.x - startX, 0, element.clientWidth - element.parentElement.clientWidth)
             const newTop = clamp(event.y - startY, 0, element.clientHeight - element.parentElement.clientHeight)
-            console.log('max components width: ', element.parentElement.clientWidth, element.clientWidth)
-            console.log('new X: ', event.x - startX, 0, element.parentElement.clientWidth - element.clientWidth, '   new Y: ', event.y - startY, 0, element.parentElement.clientHeight - element.clientHeight)
-            console.log('new Coors(clamp): ', newLeft, newTop)
 
             element.style.left = newLeft + 'px'
             element.style.top = newTop + 'px'
@@ -28,7 +25,7 @@ export function dragAndDropable(element: HTMLElement){
             element.parentElement.removeEventListener('mousemove', onMove)
         })
     })
-   
+
 }
 
 function clamp(x: number, min: number, max: number){
