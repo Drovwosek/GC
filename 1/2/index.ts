@@ -1,5 +1,5 @@
 import {House} from "./House";
-import {dragAndDropable} from "../../source/dragAndDrop";
+import {dragAndDropable} from "../../src/dragAndDrop";
 
 document.addEventListener('DOMContentLoaded', () => {
         const canvas = document.getElementsByTagName('canvas')[0]

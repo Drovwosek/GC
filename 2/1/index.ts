@@ -1,4 +1,4 @@
-import {dragAndDropable} from "../../source/dragAndDrop";
+import {dragAndDropable} from "../../src/dragAndDrop";
 
 document.addEventListener('DOMContentLoaded', () => {
     initFileDialog()
