@@ -11,7 +11,7 @@ class Painter {
 
 	static async create(canvas: HTMLCanvasElement, render: (painter: Painter) => void) {
 		const gl = canvas.getContext('webgl2')
-		const program = await createProgram(gl, '../../src/webgl2dPainter/vertex.glsl', '../../src/webgl2dPainter/fragment.glsl')
+		const program = await createProgram(gl, '../../src/webgl2dPainter/vertex.glsl', '../../src/webgl2dPainter/fragment.glsl.glsl')
 
 		return new Painter(canvas, program, render)
 	}
@@ -73,6 +73,7 @@ class Painter {
 	}
 
 	public drawEllipse(cx: number, cy: number, rx: number, ry: number, color: [number, number, number, number] = [0.1, 0.1, 0.1, 1]) {
+		/*r1 + r2 = 2a*/
 		const numVerts = 100
 		for (let i = 0; i < numVerts; i++) {
 			this.drawTriangle(

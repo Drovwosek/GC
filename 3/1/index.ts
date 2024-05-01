@@ -2,15 +2,12 @@ import {Painter} from '../../src/webgl2dPainter/Painter'
 
 document.addEventListener('DOMContentLoaded', main)
 
-/*
-* TODO: фуфайка
-* */
-
 async function main() {
 	const canvas = document.createElement('canvas')
 	document.body.append(canvas)
 	await Painter.create(canvas, draw)
 }
+
 function drawGrid(painter: Painter) {
 	painter.clear();
 	painter.drawLine(961, 0, -961, 0);
@@ -31,17 +28,20 @@ function drawGrid(painter: Painter) {
 }
 
 function drawControlPoints(painter: Painter, controlPoints: number[][]) {
-	controlPoints.forEach(point => painter.drawPoint(point[0], point[1]));
+	controlPoints.forEach(point => {
+		painter.drawPoint(point[0], point[1])
+			});
 }
 
 function approximateBezierCurve(painter: Painter, controlPoints: number[][]) {
 	let prevP = controlPoints[0];
 
+	/*B(t) = (1-t)^3 * P_0 + 3 * (1-t)^2 * t * P_1 + 3 * (1-t) * t^2 * P_2 + t^3 * P_3*/
 	for (let t = 0; t <= 1.01; t += 0.01) {
 		const invT = 1 - t;
 		const invT2 = invT * invT;
 		const invT3 = invT2 * invT;
-		/*B(t) = (1-t)^3 * P_0 + 3 * (1-t)^2 * t * P_1 + 3 * (1-t) * t^2 * P_2 + t^3 * P_3*/
+
 		const scalarFn = (i: number) => controlPoints[0][i] * invT3 +
 			controlPoints[1][i] * 3 * t * invT2 +
 			controlPoints[2][i] * 3 * invT * t * t +
@@ -62,6 +62,9 @@ function draw(painter: Painter) {
 		[80, -896],
 		[1120, 576],
 	];
+
+	painter.drawLine(-972, -576, -640, 692, [0.7, 0.7, 0.7, 1])
+	painter.drawLine( 1120, 576, 80, -896, [0.7, 0.7, 0.7, 1])
 
 	drawControlPoints(painter, controlPoints);
 	approximateBezierCurve(painter, controlPoints);
